@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  jiradb:
+    image: postgres:9.4
+    container_name: jiradb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=atlassian
+    networks:
+      - jira_network
+
+  jira:
+    image: atlassian/jira-software:8.3.1
+    container_name: jira
+    ports:
+      - "8080:8080"
+    volumes:
+      - jira-home:/var/atlassian/jira
+      - /etc/timezone:/etc/timezone:ro
+    depends_on:
+      - jiradb
+    networks:
+      - jira_network
+
+  bitbucket:
+    image: atlassian/bitbucket-server:6.5.1
+    container_name: bitbucket
+    ports:
+      - "7990:7990"
+    volumes:
+      - bitbucket-home:/var/atlassian/application-data/bitbucket
+      - /etc/timezone:/etc/timezone:ro
+    depends_on:
+      - jira
+    networks:
+      - jira_network
+  confluence:
+    image: atlassian/confluence-server:6.15
+    container_name: confluence
+    ports: 
+      - "8090:8090"
+    volumes:
+      - confluence-home:/var/atlassian/application-data/confluence
+    networks: 
+      - jira_network
+
+networks:
+  jira_network:
+volumes: 
+  bitbucket-home:
+  jira-home:
+  postgres-data:
+  confluence-home:
+

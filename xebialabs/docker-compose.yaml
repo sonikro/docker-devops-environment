@@ -1,0 +1,18 @@
+version: "2"
+services:
+  xl-release:
+    image: sonikro/xl-release:8.6.1
+    user: root
+    container_name: xl-release
+    ports:
+     - "5516:5516"
+    volumes:
+     - ~/XebiaLabs/xl-release-server/archive:/opt/xebialabs/xl-release-server/archive
+     - ~/XebiaLabs/xl-release-server/conf:/opt/xebialabs/xl-release-server/conf
+     - ~/XebiaLabs/xl-release-server/ext:/opt/xebialabs/xl-release-server/ext
+     - ~/XebiaLabs/xl-release-server/hotfix/:/opt/xebialabs/xl-release-server/hotfix/
+     - ~/XebiaLabs/xl-release-server/plugins:/opt/xebialabs/xl-release-server/plugins
+     - ~/XebiaLabs/xl-release-server/repository:/opt/xebialabs/xl-release-server/repository
+    environment:
+     - ADMIN_PASSWORD=admin
+     - ACCEPT_EULA=Y
