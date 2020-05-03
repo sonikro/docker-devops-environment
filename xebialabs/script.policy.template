@@ -1,5 +1,5 @@
 grant {
-    // ViaVarejo
+    // Custom
     permission  com.xebialabs.xlrelease.script.security.RuntimePermission "accessClass.groovy.util.*";
     permission  com.xebialabs.xlrelease.script.security.RuntimePermission "accessClass.groovy.shell.*";
     permission groovy.security.GroovyCodeSourcePermission "*"; 
