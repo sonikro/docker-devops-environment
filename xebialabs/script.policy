@@ -1,5 +1,5 @@
 grant {
-    // ViaVarejo
+    // Custom
     permission  com.xebialabs.xlrelease.script.security.RuntimePermission "accessClass.groovy.util.Eval";
     permission java.security.AllPermission;
     // Network access
